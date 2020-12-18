@@ -17,12 +17,25 @@ $(function () {
             // Reload the page to get the updated list
 
             //this will return an array of objects containing all the clips data.data
-            console.log(data.data);
-            gameData = data.data
+            console.log(data.data[0].id);
+            const clips = data.data
 
             for (let i = 1; i < 6; i++) {
-                const broadcaster = gameData[i].broadcaster_name;
-                $(`#${i}`).text(broadcaster);
+                // const broadcaster = gameData[i].broadcaster_name;
+                // $(`#${i}`).text(broadcaster);
+                // $()
+                const clip = clips[i].id;
+                $("<iframe>")
+                  .attr(
+                    "src",
+                    `https://clips.twitch.tv/embed?clip=${clip}&parent=${window.location.hostname}`
+                  )
+                  .attr("frameborder", "0")
+                  .attr("allowfullscreen", "true")
+                  .attr("height", "400")
+                  .attr("width", "620")
+                  .appendTo($("#clips"));
+        
             }
 
             // JQuery or handlebars 
