@@ -25,13 +25,14 @@ module.exports = function(app) {
             },
           });
           console.log(data.data[0].id)
-          const {  gameData  } = await axios.get("https://api.twitch.tv/helix/clips?game_id=" + data.data[0].id, {
+          const gameData = await axios.get("https://api.twitch.tv/helix/clips?game_id=" + data.data[0].id, {
             headers: {
               Authorization: "Bearer " + token,
               "Client-Id": clientid,
             },
           })
-          res.json(gameData);
+          console.log(gameData.data);
+          res.json(gameData.data);
         });
         app.get("/api/broadcaster/:broadcaster", async function (req, res) {
           // use to get new token once it expires
@@ -45,13 +46,13 @@ module.exports = function(app) {
             },
           });
           // res.json(data)
-          const {  broadcasterData  } = await axios.get("https://api.twitch.tv/helix/clips?broadcaster_id=" + data.id, {
+          const broadcasterData = await axios.get("https://api.twitch.tv/helix/clips?broadcaster_id=" + data.id, {
             headers: {
               Authorization: "Bearer " + token,
               "Client-Id": clientid,
             },
           })
-          res.json(broadcasterData);
+          res.json(broadcasterData.data);
         });
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
     res.json(req.user);
