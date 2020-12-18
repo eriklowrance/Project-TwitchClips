@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style href= "style/style.css"></style>
+<style href="style/style.css"></style>
 
 <body>
 
@@ -43,8 +43,20 @@
         <div class="w3-content">
             <div class="w3-twothird">
                 <h1>Top Viewed Clips:</h1>
+                <ul class = "topviewed">
+                    <li id = "1"></li>
+                    <li id = "2"></li>
+                    <li id = "2"></li>
+                    <li id = "3"></li>
+                    <li id = "4"></li>
 
+                </ul>
             </div>
+
+
+            <label for="site-search">Search the site:</label>
+            <input type="search" id="gamename" name="q" aria-label="Search through site content">
+            <button class = "searchgame">Search</button>
 
 
             <!-- Footer -->
@@ -52,6 +64,8 @@
                 <p>Created by: Erik Lowrance, Mostafa Alshammary, Arjun Singh, Devon Owens</p>
             </footer>
 
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script src="./js/data.js"></script>
 </body>
 
 </html>
