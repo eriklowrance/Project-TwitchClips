@@ -29,11 +29,6 @@ app.get("/api/game/:game", async function (req, res) {
 init();
 
 
-// curl -X GET 'https://api.twitch.tv/helix/clips?broadcaster_id=26929683&first=5' \
-// -H 'Authorization: Bearer 2410l1i02levldx4bouxva4t2fbto0' \
-// -H 'Client-Id: ke5ajnyp7hl111122t88bwyc0ywnqj'
-
-
 // function getClipsbyName(gameName) {
 
 //     //URL used to query the database
