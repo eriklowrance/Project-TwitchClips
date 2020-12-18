@@ -46,7 +46,7 @@ module.exports = function(app) {
             },
           });
           // res.json(data)
-          const broadcasterData = await axios.get("https://api.twitch.tv/helix/clips?broadcaster_id=" + data.id, {
+          const broadcasterData = await axios.get("https://api.twitch.tv/helix/clips?broadcaster_id=" + data.data[0].id, {
             headers: {
               Authorization: "Bearer " + token,
               "Client-Id": clientid,
