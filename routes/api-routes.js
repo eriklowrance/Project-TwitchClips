@@ -24,25 +24,37 @@ module.exports = function(app) {
               "Client-Id": clientid,
             },
           });
-          res.json(data);
+          console.log(data.data[0].id)
+          const {  gameData  } = await axios.get("https://api.twitch.tv/helix/clips?game_id=" + data.data[0].id, {
+            headers: {
+              Authorization: "Bearer " + token,
+              "Client-Id": clientid,
+            },
+          })
+          res.json(gameData);
+        });
+        app.get("/api/broadcaster/:broadcaster", async function (req, res) {
+          // use to get new token once it expires
+          // const { tokendata } = await axios.post(tokenurl);
+          // const accessToken = tokendata.access_token;
+          const gamesEndpoint = "https://api.twitch.tv/helix/users?login=" + req.params.broadcaster;
+          const { data } = await axios.get(gamesEndpoint, {
+            headers: {
+              Authorization: "Bearer " + token,
+              "Client-Id": clientid,
+            },
+          });
+          // res.json(data)
+          const {  broadcasterData  } = await axios.get("https://api.twitch.tv/helix/clips?broadcaster_id=" + data.id, {
+            headers: {
+              Authorization: "Bearer " + token,
+              "Client-Id": clientid,
+            },
+          })
+          res.json(broadcasterData);
         });
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
     res.json(req.user);
-  });
-
-  app.post("/api/videos", function(req, res) {
-    db.Videos.create({
-      video: req.body.video,
-      gameName: req.body.gameName,
-     streamerName: req.body.streamerName
-      
-    })
-      .then(function() {
-        res.send(200);
-      })
-      .catch(function(err) {
-        res.status(401).json(err);
-      });
   });
 
   app.post("/api/videos", function(req, res) {
