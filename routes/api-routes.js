@@ -30,6 +30,36 @@ module.exports = function(app) {
     res.json(req.user);
   });
 
+  app.post("/api/videos", function(req, res) {
+    db.Videos.create({
+      video: req.body.video,
+      gameName: req.body.gameName,
+     streamerName: req.body.streamerName
+      
+    })
+      .then(function() {
+        res.send(200);
+      })
+      .catch(function(err) {
+        res.status(401).json(err);
+      });
+  });
+
+  app.post("/api/videos", function(req, res) {
+    db.Videos.create({
+      video: req.body.video,
+      gameName: req.body.gameName,
+     streamerName: req.body.streamerName
+      
+    })
+      .then(function() {
+        res.send(200);
+      })
+      .catch(function(err) {
+        res.status(401).json(err);
+      });
+  });
+
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
