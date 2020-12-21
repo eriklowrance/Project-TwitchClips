@@ -18,3 +18,8 @@ body,
     .fa-coffee {
         font-size: 200px
     }
+
+    .register-card,
+    .login-form{
+        margin-top: 350px;
+    }
