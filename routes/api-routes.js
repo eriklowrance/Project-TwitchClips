@@ -67,9 +67,9 @@ module.exports = function(app) {
 
   app.post("/api/videos", function(req, res) {
     db.Videos.create({
-      video: req.body.video,
-      gameName: req.body.gameName,
-      streamerName: req.body.streamerName,
+      video: req.body.id,
+      gameId: req.body.game_id,
+      streamerName: req.body.broadcaster_name,
     })
       .then(function() {
         res.send(200);
