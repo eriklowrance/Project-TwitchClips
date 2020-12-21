@@ -6,7 +6,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
     },
     // The password cannot be null
-    gameName: {
+    gameId: {
       type: DataTypes.STRING,
       allowNull: false,
     },

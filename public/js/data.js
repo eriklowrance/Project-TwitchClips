@@ -49,7 +49,7 @@ $(function() {
     const stream = $("#streamer-search")
       .val()
       .trim();
-      console.log(stream)
+    console.log(stream);
 
     // Send the GET request.
     $.ajax("/api/broadcaster/" + stream, {
@@ -79,35 +79,70 @@ $(function() {
           .attr("height", "400")
           .attr("width", "620")
           .appendTo($("#clips"));
+
+        $("<button>")
+          .text("add")
+          .attr("class", "addbtn")
+          .attr("data-clip", clip)
+          .attr("data-gameId", clips[i].game_id)
+          .attr("data-streamer", clips[i].broadcaster_name)
+          .appendTo($("#clips"));
       }
 
+      $(".addbtn").on("click", function(event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
+  
+        console.log("button");
+  
+        // Send the POST request.
+        $.ajax("/api/videos", {
+          type: "POST",
+          data: [
+            {
+              video: $(this).attr("data-clip"),
+              gameId: $(this).attr("data-gameId"),
+              streamerName: $(this).attr("data-streamer"),
+            },
+          ],
+        }).then(function() {
+          console.log("Added a new video.");
+  
+          //Render
+  
+          // Reload the page to get the updated list
+          location.reload();
+        });
+      });
       // JQuery or handlebars
     });
   });
 
-  $(".addbtn").on("submit", function(event) {
-    // Make sure to preventDefault on a submit event.
-    event.preventDefault();
+  //   $(".addbtn").on("click", function(event) {
+  //     // Make sure to preventDefault on a submit event.
+  //     event.preventDefault();
 
-    // Send the POST request.
-    $.ajax("/api/videos", {
-      type: "POST",
-      data: [
-        {
-          video,
-          gameName,
-          streamerName,
-        },
-      ],
-    }).then(function() {
-      console.log("Added a new video.");
+  // console.log("button")
 
-      //Render
+  //     // Send the POST request.
+  //     $.ajax("/api/videos", {
+  //       type: "POST",
+  //       data: [
+  //         {
+  //           video,
+  //           gameName,
+  //           streamerName,
+  //         },
+  //       ],
+  //     }).then(function() {
+  //       console.log("Added a new video.");
 
-      // Reload the page to get the updated list
-      location.reload();
-    });
-  });
+  //       //Render
+
+  //       // Reload the page to get the updated list
+  //       location.reload();
+  //     });
+  //   });
 
   $(".deletebtn").on("click", function(e) {
     e.preventDefault();
