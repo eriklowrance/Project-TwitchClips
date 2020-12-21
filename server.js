@@ -1,7 +1,7 @@
 // Requiring necessary npm packages
 require("dotenv").config();
 
-var exphbs = require("express-handlebars");
+const exphbs = require("express-handlebars");
 
 const express = require("express");
 const session = require("express-session");
@@ -18,8 +18,6 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
-
-const exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
