@@ -80,5 +80,24 @@ init();
 //     });
 // }
 
+// data.data[0].broadcaster_name
+// data.data[0].embed_url
+// data.data.name
 
-// getClipsbyBroad();
+// data: [
+//   {
+//     id: 'TrustworthyBreakableJuiceCorgiDerp',
+//     url: 'https://clips.twitch.tv/TrustworthyBreakableJuiceCorgiDerp',
+//     embed_url: 'https://clips.twitch.tv/embed?clip=TrustworthyBreakableJuiceCorgiDerp',
+//     broadcaster_id: '110690086',
+//     broadcaster_name: 'Myth',
+//     creator_id: '99256167',
+//     creator_name: 'M0oosik',
+//     video_id: '',
+//     game_id: '33214',
+//     language: 'en',
+//     title: 'Solving food problems',
+//     view_count: 1851555,
+//     created_at: '2018-03-26T17:20:15Z',
+//     thumbnail_url: 'https://clips-media-assets2.twitch.tv/214578507-preview-480x272.jpg'
+//   },
