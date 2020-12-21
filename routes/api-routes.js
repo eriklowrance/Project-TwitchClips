@@ -1,59 +1,66 @@
 // Requiring our models and passport as we've configured it
-var db = require("../models");
-var passport = require("../config/passport");
+const db = require("../models");
+const passport = require("../config/passport");
 const axios = require("axios").default;
 const clientid = process.env.CLIENT_ID;
 const token = process.env.TWITCH_TOKEN;
 // url needed to renew token once it expires
 // const tokenurl = `https://id.twitch.tv/oauth2/token?client_id=${clientid}&client_secret=${clientsecret}&grant_type=client_credentials`;
 
-
-
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
-        app.get("/api/game/:game", async function (req, res) {
-          // use to get new token once it expires
-          // const { tokendata } = await axios.post(tokenurl);
-          // const accessToken = tokendata.access_token;
-          const gamesEndpoint = "https://api.twitch.tv/helix/games?name=" + req.params.game;
-          const { data } = await axios.get(gamesEndpoint, {
-            headers: {
-              Authorization: "Bearer " + token,
-              "Client-Id": clientid,
-            },
-          });
-          console.log(data.data[0].id)
-          const gameData = await axios.get("https://api.twitch.tv/helix/clips?game_id=" + data.data[0].id, {
-            headers: {
-              Authorization: "Bearer " + token,
-              "Client-Id": clientid,
-            },
-          })
-          console.log(gameData.data);
-          res.json(gameData.data);
-        });
-        app.get("/api/broadcaster/:broadcaster", async function (req, res) {
-          // use to get new token once it expires
-          // const { tokendata } = await axios.post(tokenurl);
-          // const accessToken = tokendata.access_token;
-          const gamesEndpoint = "https://api.twitch.tv/helix/users?login=" + req.params.broadcaster;
-          const { data } = await axios.get(gamesEndpoint, {
-            headers: {
-              Authorization: "Bearer " + token,
-              "Client-Id": clientid,
-            },
-          });
-          // res.json(data)
-          const broadcasterData = await axios.get("https://api.twitch.tv/helix/clips?broadcaster_id=" + data.data[0].id, {
-            headers: {
-              Authorization: "Bearer " + token,
-              "Client-Id": clientid,
-            },
-          })
-          res.json(broadcasterData.data);
-        });
+  app.get("/api/game/:game", async function(req, res) {
+    // use to get new token once it expires
+    // const { tokendata } = await axios.post(tokenurl);
+    // const accessToken = tokendata.access_token;
+    const gamesEndpoint =
+      "https://api.twitch.tv/helix/games?name=" + req.params.game;
+    const { data } = await axios.get(gamesEndpoint, {
+      headers: {
+        Authorization: "Bearer " + token,
+        "Client-Id": clientid,
+      },
+    });
+    console.log(data.data[0].id);
+    const gameData = await axios.get(
+      "https://api.twitch.tv/helix/clips?game_id=" + data.data[0].id,
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+          "Client-Id": clientid,
+        },
+      }
+    );
+    console.log(gameData.data);
+    res.json(gameData.data);
+  });
+  app.get("/api/broadcaster/:broadcaster", async function(req, res) {
+    // use to get new token once it expires
+    // const { tokendata } = await axios.post(tokenurl);
+    // const accessToken = tokendata.access_token;
+    const gamesEndpoint =
+      "https://api.twitch.tv/helix/users?login=" + req.params.broadcaster;
+    const { data } = await axios.get(gamesEndpoint, {
+      headers: {
+        Authorization: "Bearer " + token,
+        "Client-Id": clientid,
+      },
+    });
+    // res.json(data)
+    const broadcasterData = await axios.get(
+      "https://api.twitch.tv/helix/clips?broadcaster_id=" + data.data[0].id,
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+          "Client-Id": clientid,
+        },
+      }
+    );
+    console.log(broadcasterData.data);
+    res.json(broadcasterData.data);
+  });
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
     res.json(req.user);
   });
@@ -62,8 +69,7 @@ module.exports = function(app) {
     db.Videos.create({
       video: req.body.video,
       gameName: req.body.gameName,
-     streamerName: req.body.streamerName
-      
+      streamerName: req.body.streamerName,
     })
       .then(function() {
         res.send(200);
@@ -79,7 +85,7 @@ module.exports = function(app) {
   app.post("/api/signup", function(req, res) {
     db.User.create({
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
     })
       .then(function() {
         res.redirect(307, "/api/login");
@@ -105,7 +111,7 @@ module.exports = function(app) {
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
         email: req.user.email,
-        id: req.user.id
+        id: req.user.id,
       });
     }
   });
