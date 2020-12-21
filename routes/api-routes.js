@@ -67,12 +67,12 @@ module.exports = function(app) {
 
   app.post("/api/videos", function(req, res) {
     db.Videos.create({
-      video: req.body.id,
-      gameId: req.body.game_id,
-      streamerName: req.body.broadcaster_name,
+      video: req.body.video,
+      gameId: req.body.gameId,
+      streamerName: req.body.streamerName,
     })
       .then(function() {
-        res.send(200);
+        res.sendStatus(200);
       })
       .catch(function(err) {
         res.status(401).json(err);
