@@ -36,9 +36,41 @@ $(function() {
           .attr("height", "400")
           .attr("width", "620")
           .appendTo($("#clips"));
+
+          $("<button>")
+          .text("add")
+          .attr("class", "addbtn")
+          .attr("data-clip", clip)
+          .attr("data-gameId", clips[i].game_id)
+          .attr("data-streamer", clips[i].broadcaster_name)
+          .appendTo($("#clips"));
       }
 
       // JQuery or handlebars
+      $(".addbtn").on("click", function(event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
+  
+        console.log("button");
+  
+        // Send the POST request.
+        $.ajax("/api/videos", {
+          type: "POST",
+          data:
+            {
+              video: $(this).attr("data-clip"),
+              gameId: $(this).attr("data-gameId"),
+              streamerName: $(this).attr("data-streamer"),
+            },
+        }).then(function() {
+          console.log("Added a new video.");
+  
+          //Render
+  
+          // // Reload the page to get the updated list
+          // location.reload();
+        });
+      });
     });
   });
 
@@ -98,20 +130,19 @@ $(function() {
         // Send the POST request.
         $.ajax("/api/videos", {
           type: "POST",
-          data: [
+          data:
             {
               video: $(this).attr("data-clip"),
               gameId: $(this).attr("data-gameId"),
               streamerName: $(this).attr("data-streamer"),
             },
-          ],
         }).then(function() {
           console.log("Added a new video.");
   
           //Render
   
-          // Reload the page to get the updated list
-          location.reload();
+          // // Reload the page to get the updated list
+          // location.reload();
         });
       });
       // JQuery or handlebars
