@@ -1,5 +1,6 @@
 
-.display-1{
+.display-1,
+h1{
     color: purple;
     font-family: 'Russo One', sans-serif;
 ;
@@ -22,4 +23,16 @@
 .header{
     color: purple;
     font-family: 'Russo One', sans-serif;
+}
+
+.body{
+    background: url(../../assets/1280px-Twitch_logo.svg.png);
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
