@@ -70,6 +70,7 @@ module.exports = function(app) {
       video: req.body.video,
       gameId: req.body.gameId,
       streamerName: req.body.streamerName,
+      UserId: req.user.id
     })
       .then(function() {
         res.sendStatus(200);
@@ -79,8 +80,13 @@ module.exports = function(app) {
       });
   });
 
-  app.get("/api/videos", function (req, res){
-    db.Videos.findAll().then(function (videos) {
+  app.get("/api/videos/:memberId", function (req, res){
+    let memberId = req.params.memberId;
+    db.Videos.findAll({
+      where: {
+        UserId: memberId
+      }
+    }).then(function (videos) {
       res.json(videos)
     })
   })

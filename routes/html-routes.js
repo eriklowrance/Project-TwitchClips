@@ -1,9 +1,11 @@
 // Requiring path to so we can use relative routes to our HTML files
 const path = require("path");
 const db = require("../models");
+const axios = require("axios").default;
 
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
+const { default: Axios } = require("axios");
 
 module.exports = function (app) {
 
@@ -34,6 +36,15 @@ module.exports = function (app) {
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/members", isAuthenticated, (req, res) => {
-    res.render("clips");
-  });
+
+    db.Videos.findAll({
+      where: {
+        UserId: req.user.id
+      }
+    }).then(function(videos){
+      console.log(videos);
+
+      res.render("clips", {videos: videos.map(video => video.toJSON())});
+    })
+  })
 };
