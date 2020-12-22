@@ -151,6 +151,17 @@ $(function() {
     });
   });
 
+  $(".loginbtn").on("click", function(e){
+    e.preventDefault();
+    window.location.replace("/login");
+    // $.ajax({
+    //   url: "/login",
+    //   method: "GET",
+    // }).then(function(){
+    //   window.location.replace("login");
+    // })
+  })
+
   // function getVids(){
   //   $.ajax({
   //     url: "/api/user_data/",
