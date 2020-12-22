@@ -1,30 +1,32 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(function() {
+
+  //event listener for search by game button
   $(".searchgame").on("click", function(event) {
-    // Make sure to preventDefault on a submit event.
+    // prevent refresh on click
     event.preventDefault();
 
+    //store user input
     const game = $("#gamename")
       .val()
       .trim();
 
-    // Send the GET request.
+    // Send the GET request to access game data
     $.ajax("/api/game/" + game, {
       type: "GET",
     }).then(function(data) {
       console.log("search results");
-      // data.data.name
 
-      // Reload the page to get the updated list
+      //console log test: returns id of first clip
+      console.log(data.data[0].id);
 
       //this will return an array of objects containing all the clips data.data
-      console.log(data.data[0].id);
       const clips = data.data;
 
+      //for loop used to generate 5 clips to the page
       for (let i = 1; i < 6; i++) {
-        // const broadcaster = gameData[i].broadcaster_name;
-        // $(`#${i}`).text(broadcaster);
-        // $()
+
+        //for each clip, create a new frame that contains the embedded video and an add button.
         const clip = clips[i].id;
         $("<iframe>")
           .attr(
@@ -46,14 +48,12 @@ $(function() {
           .appendTo($("#clips"));
       }
 
-      // JQuery or handlebars
+      // Event listener for add button
       $(".addbtn").on("click", function(event) {
-        // Make sure to preventDefault on a submit event.
+        // prevents refresh on click
         event.preventDefault();
   
-        console.log("button");
-  
-        // Send the POST request.
+        // Send the POST request to save selected clip to database 
         $.ajax("/api/videos", {
           type: "POST",
           data:
@@ -63,19 +63,16 @@ $(function() {
               streamerName: $(this).attr("data-streamer"),
             },
         }).then(function() {
-          console.log("Added a new video.");
-  
-          //Render
-  
-          // // Reload the page to get the updated list
-          // location.reload();
+          console.log("Added a new video by game name.");
         });
       });
     });
   });
 
+  //Event listener for search by streamer
   $(".searchstream").on("click", function(event) {
-    // Make sure to preventDefault on a submit event.
+
+    // prevent refresh on click
     event.preventDefault();
 
     const stream = $("#streamer-search")
@@ -88,18 +85,13 @@ $(function() {
       type: "GET",
     }).then(function(data) {
       console.log("search results");
-      // data.data.name
-
-      // Reload the page to get the updated list
 
       //this will return an array of objects containing all the clips data.data
-      console.log(data.data[0].id);
       const clips = data.data;
 
       for (let i = 1; i < 6; i++) {
-        // const broadcaster = gameData[i].broadcaster_name;
-        // $(`#${i}`).text(broadcaster);
-        // $()
+        
+        //for each clip, create a new frame that contains the embedded video and an add button.
         const clip = clips[i].id;
         $("<iframe>")
           .attr(
@@ -127,7 +119,7 @@ $(function() {
   
         console.log("button");
   
-        // Send the POST request.
+        // Send the POST request to save selected clip to database 
         $.ajax("/api/videos", {
           type: "POST",
           data:
@@ -137,73 +129,22 @@ $(function() {
               streamerName: $(this).attr("data-streamer"),
             },
         }).then(function() {
-          console.log("Added a new video.");
-  
-          //Render
-  
-          // // Reload the page to get the updated list
-          // location.reload();
+          console.log("Added a new clip by streamer name.");
         });
       });
       // JQuery or handlebars
     });
   });
 
-  //   $(".addbtn").on("click", function(event) {
-  //     // Make sure to preventDefault on a submit event.
-  //     event.preventDefault();
-
-  // console.log("button")
-
-  //     // Send the POST request.
-  //     $.ajax("/api/videos", {
-  //       type: "POST",
-  //       data: [
-  //         {
-  //           video,
-  //           gameName,
-  //           streamerName,
-  //         },
-  //       ],
-  //     }).then(function() {
-  //       console.log("Added a new video.");
-
-  //       //Render
-
-  //       // Reload the page to get the updated list
-  //       location.reload();
-  //     });
-  //   });
-
+  //delete button attached to each saved clip isnide of user's page. **TO BE EDITED**
   $(".deletebtn").on("click", function(e) {
     e.preventDefault();
     const id = $(this).attr("data-id");
     $.ajax({
-      url: "/api/cats/" + id,
+      url: "/api/videos/" + id,
       method: "DELETE",
     }).then(function() {
       location.reload();
     });
   });
-
-  // $(".change-sleep").on("click", function (event) {
-  //     var id = $(this).data("id");
-  //     var newSleep = $(this).data("newsleep");
-
-  //     var newSleepState = {
-  //       sleepy: newSleep,
-  //     };
-
-  //     // Send the PUT request.
-  //     $.ajax("/api/cats/" + id, {
-  //       type: "PUT",
-  //       data: newSleepState,
-  //     }).then(function () {
-  //       console.log("changed sleep to", newSleep);
-  //       // Reload the page to get the updated list
-  //       location.reload();
-  //     });
-  //   });
 });
-
-function renderResult(name) {}
