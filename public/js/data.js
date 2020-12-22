@@ -63,7 +63,7 @@ $(function() {
               streamerName: $(this).attr("data-streamer"),
             },
         }).then(function() {
-          console.log("Added a new video by game name.");
+          $()
         });
       });
     });
