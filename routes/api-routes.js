@@ -80,7 +80,9 @@ module.exports = function(app) {
   });
 
   app.get("/api/videos", function (req, res){
-    res.render("dash")
+    db.Videos.findAll().then(function (videos) {
+      res.json(videos)
+    })
   })
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
