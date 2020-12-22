@@ -1,24 +1,37 @@
 <h1>Twitch Clips!</h1>
 
-<h2>Your Searched Clips:</h2>
-
+<div class = "searchedclips">
+<h2>Your searched clips:</h2>
 <ul>
-  {{#each videos}}
+  {{#each Videos}}
+  <li> 
+      {{this.video}}
+     </li>
   {{/each}}
 </ul>
+</div>
+
+
 
 <h2>New search</h2>
 <form class="create-form">
 
   <div class="form-group">
     <label for="ca">Game Name:</label>
-    <input type="text" id="game" name="gameName">
+    <input type="text" id="gamename">
   </div>
+  <button class = "searchgame" type="submit">Search</button>
+
   <div class="form-group">
     <label for="ca">Streamer Name:</label>
-    <input type="text" id="streamer" name="streamerName">
+    <input type="text" id="streamer-search" >
   </div>
 
 
-  <button type="submit">Search</button>
+  <button class = "searchstream" type="submit">Search</button>
 </form>
+
+
+<div id = "clips">
+
+</div>
