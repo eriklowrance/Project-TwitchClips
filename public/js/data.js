@@ -136,6 +136,7 @@ $(function() {
     });
   });
 
+
   //delete button attached to each saved clip isnide of user's page. **TO BE EDITED**
   $(".deletebtn").on("click", function(e) {
     e.preventDefault();
@@ -147,4 +148,25 @@ $(function() {
       location.reload();
     });
   });
+
+  function getVids(){
+    $.ajax({
+      url: "/api/user_data/",
+      method: "GET",
+    }).then(function(data) {
+      
+      memberId = data.id;
+      console.log(memberId);
+
+      $.ajax({
+        url: "/api/videos/" + memberId,
+        method: "GET"
+      }).then(function(results) {
+        
+        console.log(results);
+      });
+    });
+  }
+
+  getVids();
 });
