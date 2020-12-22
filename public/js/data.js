@@ -18,7 +18,7 @@ $(function() {
       console.log("search results");
 
       //console log test: returns id of first clip
-      console.log(data.data[0].id);
+      console.log(data);
 
       //this will return an array of objects containing all the clips data.data
       const clips = data.data;
@@ -45,6 +45,7 @@ $(function() {
           .attr("data-clip", clip)
           .attr("data-gameId", clips[i].game_id)
           .attr("data-streamer", clips[i].broadcaster_name)
+
           .appendTo($("#clips"));
       }
 
@@ -140,7 +141,8 @@ $(function() {
   //delete button attached to each saved clip isnide of user's page. **TO BE EDITED**
   $(".deletebtn").on("click", function(e) {
     e.preventDefault();
-    const id = $(this).attr("data-id");
+    const id = $(this).attr("data-clip");
+    console.log(id);
     $.ajax({
       url: "/api/videos/" + id,
       method: "DELETE",
@@ -149,24 +151,24 @@ $(function() {
     });
   });
 
-  function getVids(){
-    $.ajax({
-      url: "/api/user_data/",
-      method: "GET",
-    }).then(function(data) {
+  // function getVids(){
+  //   $.ajax({
+  //     url: "/api/user_data/",
+  //     method: "GET",
+  //   }).then(function(data) {
       
-      memberId = data.id;
-      console.log(memberId);
+  //     memberId = data.id;
+  //     console.log(memberId);
 
-      $.ajax({
-        url: "/api/videos/" + memberId,
-        method: "GET"
-      }).then(function(results) {
+  //     $.ajax({
+  //       url: "/api/videos/" + memberId,
+  //       method: "GET"
+  //     }).then(function(results) {
         
-        console.log(results);
-      });
-    });
-  }
+  //       console.log(results);
+  //     });
+  //   });
+  // }
 
-  getVids();
+  // getVids();
 });

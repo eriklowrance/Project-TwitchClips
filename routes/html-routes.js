@@ -36,15 +36,23 @@ module.exports = function (app) {
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/members", isAuthenticated, (req, res) => {
+    let url =  req.headers.host
+
+    if (url.includes(":")){
+      url = url.split(":")[0];
+    }
 
     db.Videos.findAll({
       where: {
         UserId: req.user.id
       }
     }).then(function(videos){
-      console.log(videos);
+      console.log(url);
 
-      res.render("clips", {videos: videos.map(video => video.toJSON())});
+      res.render("clips", {
+        videos: videos.map(video => video.toJSON()),
+        url: url
+      });
     })
   })
 };
