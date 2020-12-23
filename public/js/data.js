@@ -35,8 +35,8 @@ $(function() {
           )
           .attr("frameborder", "0")
           .attr("allowfullscreen", "true")
-          .attr("height", "400")
-          .attr("width", "620")
+          .attr("height", "300")
+          .attr("width", "500")
           .appendTo($("#clips"));
 
           $("<button>")
@@ -101,12 +101,12 @@ $(function() {
           )
           .attr("frameborder", "0")
           .attr("allowfullscreen", "true")
-          .attr("height", "400")
-          .attr("width", "620")
+          .attr("height", "300")
+          .attr("width", "500")
           .appendTo($("#clips"));
         $("<button>")
           .text("Save for later!")
-          .attr("class", "addbtn btn btn-primary")
+          .attr("class", "addbtn btn btn-primary mb-3")
           .attr("data-clip", clip)
           .attr("data-gameId", clips[i].game_id)
           .attr("data-streamer", clips[i].broadcaster_name)
@@ -132,7 +132,6 @@ $(function() {
           console.log("Added a new clip by streamer name.");
         });
       });
-      // JQuery or handlebars
     });
   });
 
@@ -171,24 +170,4 @@ $(function() {
     })
   })
 
-  // function getVids(){
-  //   $.ajax({
-  //     url: "/api/user_data/",
-  //     method: "GET",
-  //   }).then(function(data) {
-      
-  //     memberId = data.id;
-  //     console.log(memberId);
-
-  //     $.ajax({
-  //       url: "/api/videos/" + memberId,
-  //       method: "GET"
-  //     }).then(function(results) {
-        
-  //       console.log(results);
-  //     });
-  //   });
-  // }
-
-  // getVids();
 });

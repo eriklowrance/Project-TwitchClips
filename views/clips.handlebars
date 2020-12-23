@@ -1,99 +1,50 @@
-<div class="container mt-3">
+<div class="container mt-5">
   <div class="row">
 
+    {{!-- Log-out button --}}
     <div class="col-sm-12 text-end">
-
       <button class="btn btn-primary logoutbtn mt-2">Logout</button>
-
     </div>
   </div>
 
   <div class="row">
-    <div class="col-sm-12">
-      <h1>Twitch Clips!</h1>
 
-
-
-      <div class="searchedclips">
-
-        <div class="row">
-
-          <div class="col-12 d-flex">
-            <form class="create-form">
-
-              <div class="form-group">
-                <h2>New search</h2>
-
-                <label for="ca">Game Name:</label>
-                <input type="text" id="gamename" class="form-control">
-                <button class="searchgame btn btn-primary" type="submit">Search</button>
-              </div>
-
-              <div class="form-group">
-                <label for="ca">Streamer Name:</label>
-                <input type="text" id="streamer-search" class="form-control">
-              </div>
-              <button class="searchstream btn btn-primary" type="submit">Search</button>
-            </form>
-
+    <h1>Twitch Clips!</h1>
+    <div class="col-6 mt-3">
+      <div class="card py-4 px-4">
+        <h4>Search clips by name of the game or streamer</h4>
+        <form class="create-form mt-3">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" id="gamename" placeholder="Game Name">
+            <button class="btn btn-outline-secondary searchgame" type="button">Search</button>
           </div>
 
-
-          {{!-- display previously searched clips --}}
-          <h2> Saved Clips: </h2>
-          <div class="row row-cols-2">
-
-
-            {{#each videos}}
-            <div class="col-6 pl-4 mt-4">
-
-
-              <iframe src="https://clips.twitch.tv/embed?clip={{video}}&parent={{../url}}" frameborder="0"
-                allowfullscreen="true" height="200" width="350"></iframe>
-              <button data-clip={{id}} class="deletebtn btn btn-primary">Delete clip</button><br>
-
-            </div>
-            {{/each}}
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" id="streamer-search" placeholder="Streamer Name">
+            <button class="btn btn-outline-secondary searchstream" type="button" id="button-addon2">Search</button>
           </div>
+        </form>
 
+        <div id="clips">
         </div>
-
 
       </div>
     </div>
-  </div>
 
-  {{!-- <div class="row ml-2">
-    <div class="col-sm-3">
+    <div class="col-5 mt-3">
+      <div class="card saved-card py-4 px-4">
+        <h4>Saved Clips: </h4>
 
-      <form class="create-form">
+        {{#each videos}}
+        <iframe src="https://clips.twitch.tv/embed?clip={{video}}&parent={{../url}}" frameborder="0"
+          allowfullscreen="true" height="250" width="450"></iframe>
+        <button data-clip={{id}} class="deletebtn btn btn-primary">Delete clip</button><br>
+        {{/each}}
 
-        <div class="form-group">
-          <h2>New search</h2>
-          <label for="ca">Game Name:</label>
-          <input type="text" id="gamename" class="form-control">
-        </div>
-        <button class="searchgame btn btn-primary" type="submit">Search</button>
-
-        <div class="form-group">
-          <label for="ca">Streamer Name:</label>
-          <input type="text" id="streamer-search" class="form-control">
-        </div>
-
-
-        <button class="searchstream btn btn-primary" type="submit">Search</button>
-      </form>
-
-
-
+      </div>
     </div>
-  </div> --}}
 
-  <h2>Searched Clips:</h2>
-  <p>Save clips you want to view later and they will be there when you refresh the page or login again!</p>
-  <div id="clips">
 
   </div>
-
 
 </div>
