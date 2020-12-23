@@ -25,10 +25,11 @@ h1{
     font-family: 'Russo One', sans-serif;
 }
 
-.body{
-    background: url(../../assets/1280px-Twitch_logo.svg.png);
+.container{
+    background: url(/assets/tclogo.png);
     background-repeat: no-repeat;
     background-position: center top;
+    opacity: 10;
 }
 
 .footer{

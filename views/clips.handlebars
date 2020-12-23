@@ -1,39 +1,74 @@
+<div class="container">
+<div class="row">
+  <div class="col-sm-12 text-end">
+
+<button class="btn btn-primary logoutbtn">Logout</button>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
 <h1>Twitch Clips!</h1>
 
 <h2> Saved Clips: </h2>
 <div class="searchedclips">
+   <div class="row">
 
     {{#each videos}}
+     <div class="col-sm-4 pl-4 mt-4">
 
-      <iframe src = "https://clips.twitch.tv/embed?clip={{video}}&parent={{../url}}" frameborder = "0" allowfullscreen = "true" height = "200" width = "400"></iframe>
-      <button class = "deletebtn">Delete clip</button>
 
+      <iframe src = "https://clips.twitch.tv/embed?clip={{video}}&parent={{../url}}" frameborder = "0" allowfullscreen = "true" height = "200" width = "350"></iframe>
+      <button data-clip = {{id}} class = "deletebtn btn btn-primary">Delete clip</button><br>
+
+     </div>
     {{/each}}
+   </div>
 
+</div>
+
+
+  </div>
 </div>
 
 
 
 
-<h2>New search</h2>
+
+
+<div class="row ml-2">
+  <div class="col-sm-3">
+
 <form class="create-form">
 
   <div class="form-group">
+    <h2>New search</h2>
     <label for="ca">Game Name:</label>
-    <input type="text" id="gamename">
+    <input type="text" id="gamename" class = "form-control">
   </div>
-  <button class="searchgame" type="submit">Search</button>
+  <button class="searchgame btn btn-primary" type="submit">Search</button>
 
   <div class="form-group">
     <label for="ca">Streamer Name:</label>
-    <input type="text" id="streamer-search">
+    <input type="text" id="streamer-search" class = "form-control">
   </div>
 
 
-  <button class="searchstream" type="submit">Search</button>
+  <button class="searchstream btn btn-primary" type="submit">Search</button>
 </form>
+
+
+
+  </div>
+</div>
 
   <h2>Searched Clips:</h2>
 <div id="clips">
 
 </div>
+
+
+</div>
+

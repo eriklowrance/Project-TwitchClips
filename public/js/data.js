@@ -104,10 +104,9 @@ $(function() {
           .attr("height", "400")
           .attr("width", "620")
           .appendTo($("#clips"));
-
         $("<button>")
-          .text("add")
-          .attr("class", "addbtn")
+          .text("Save for later!")
+          .attr("class", "addbtn btn btn-primary")
           .attr("data-clip", clip)
           .attr("data-gameId", clips[i].game_id)
           .attr("data-streamer", clips[i].broadcaster_name)
@@ -160,6 +159,16 @@ $(function() {
     // }).then(function(){
     //   window.location.replace("login");
     // })
+  })
+
+  $(".logoutbtn").on("click", function() {
+    $.ajax({
+      url: "/logout",
+      method: "GET"
+    }).then(function () {
+      console.log("Logged out!")
+      location.href= "/"
+    })
   })
 
   // function getVids(){
