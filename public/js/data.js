@@ -26,7 +26,7 @@ $(function() {
       //for loop used to generate 5 clips to the page
       for (let i = 1; i < 6; i++) {
 
-        //for each clip, create a new frame that contains the embedded video and an add button.
+        //for each clip, create a new frame that contains the embedded video and an add button using Jquery
         const clip = clips[i].id;
         $("<iframe>")
           .attr(
@@ -92,7 +92,7 @@ $(function() {
 
       for (let i = 1; i < 6; i++) {
         
-        //for each clip, create a new frame that contains the embedded video and an add button.
+        //for each clip, create a new frame that contains the embedded video and an add button using Jquery
         const clip = clips[i].id;
         $("<iframe>")
           .attr(
