@@ -40,8 +40,8 @@ $(function() {
           .appendTo($("#clips"));
 
           $("<button>")
-          .text("add")
-          .attr("class", "addbtn")
+          .text("Save for later!")
+          .attr("class", "addbtn btn btn-primary")
           .attr("data-clip", clip)
           .attr("data-gameId", clips[i].game_id)
           .attr("data-streamer", clips[i].broadcaster_name)
