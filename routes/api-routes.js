@@ -127,4 +127,12 @@ module.exports = function(app) {
       });
     }
   });
+
+  app.delete("/api/videos/:id", function (req, res) {
+    db.Videos.destroy({where: {
+      id: req.params.id
+    }}).then(function (results) {
+      res.json(results)
+    })
+  })
 };
