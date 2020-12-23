@@ -65,6 +65,7 @@ module.exports = function(app) {
     res.json(req.user);
   });
 
+  //saving videos
   app.post("/api/videos", function(req, res) {
     db.Videos.create({
       video: req.body.video,
@@ -80,6 +81,7 @@ module.exports = function(app) {
       });
   });
 
+  //getting all saved videos by member ID (or user ID in database)
   app.get("/api/videos/:memberId", function (req, res){
     let memberId = req.params.memberId;
     db.Videos.findAll({
@@ -128,6 +130,7 @@ module.exports = function(app) {
     }
   });
 
+  //delete video by its id.
   app.delete("/api/videos/:id", function (req, res) {
     db.Videos.destroy({where: {
       id: req.params.id

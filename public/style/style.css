@@ -1,9 +1,14 @@
-
 .display-1,
 h1{
     color: purple;
     font-family: 'Russo One', sans-serif;
-;
+}
+
+h4{
+    color: #6441A4;
+    font-family: 'Russo One', sans-serif;
+    opacity: 75%;
+    font-size: medium;
 }
 
 .card-title,
@@ -12,9 +17,9 @@ h1{
 }
 
 .btn{
-    background-color: purple;
+    background-color: #6441A4;
     color: white;
-}
+} 
 
 .card-body{
     padding: 40px;
@@ -34,7 +39,15 @@ h1{
 }
 
 .footer{
-    position: absolute;
+    position: fixed;
     bottom: 0;
-    width: 100%;
+    color: grey;
+}
+
+.create-form{
+    width: 70%;
+}
+
+.deletebtn{
+    width: 25%;
 }
